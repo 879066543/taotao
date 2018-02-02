@@ -6,7 +6,12 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>taotao-manage-pojo</artifactId>
-  <dependencies>
+  	<dependencies>
+		<!-- 通用mapper -->
+		<dependency>
+			<groupId>tk.mybatis</groupId>
+			<artifactId>mapper</artifactId>
+		</dependency>
+	</dependencies>
   	
-  </dependencies>
 </project>

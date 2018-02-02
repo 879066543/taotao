@@ -27,9 +27,15 @@
 
 	<!-- 使用广播； -->
 	<!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
+	<!-- 采用注册中心的方式 -->
+	<dubbo:registry protocol="zookeeper" address="192.168.12.168:2181" />
 
 	<!-- 声明要调用的服务，timeout是设置连接超时最长时间,如果不设置，超时时间默认是3秒 -->
-	<dubbo:reference interface="com.taotao.manage.service.TestService"
-		id="testService" timeout="1000000" url="dubbo://127.0.0.1:20880"/>
+	<!-- <dubbo:reference interface="com.taotao.manage.service.TestService"
+		id="testService" timeout="1000000" url="dubbo://127.0.0.1:20880"/> -->
+		<dubbo:reference interface="com.taotao.manage.service.TestService"
+		id="testService" timeout="1000000"/>
+		<dubbo:reference interface="com.taotao.manage.service.ItemCatService"
+		id="itemCatService" timeout="1000000"/>
 	
 </beans>

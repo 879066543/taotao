@@ -17,12 +17,15 @@
 	
 	<!-- 使用multicast广播注册中心暴露服务地址 -->
 	<!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
-	<dubbo:registry address="N/A" />
+	<!-- 采用直连的方式 -->
+	<!-- <dubbo:registry address="N/A" /> -->
+	<dubbo:registry protocol="zookeeper" address="192.168.12.168:2181" />
 	<!-- 用dubbo协议在20880端口暴露服务；端口号唯一即可 -->
 	<dubbo:protocol name="dubbo" port="20880" />
 
 	<bean id="testServiceImpl" class="com.taotao.manage.service.impl.TestServiceImpl"/>
+	<bean id="itemCatServiceImpl" class="com.taotao.manage.service.impl.ItemCatServiceImpl"/>
 	<!-- 声明需要暴露的服务接口 -->
 	<dubbo:service interface="com.taotao.manage.service.TestService" ref="testServiceImpl" />
-	
+	<dubbo:service interface="com.taotao.manage.service.ItemCatService" ref="itemCatServiceImpl" />
 </beans>

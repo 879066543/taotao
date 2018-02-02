@@ -6,4 +6,12 @@
 		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 	<!-- 别名的在sqlSessionFactory中配置了 -->
+	
+	<!-- 添加分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<property name="dialect" value="mysql" />
+		</plugin>
+	</plugins>
+	
 </configuration>

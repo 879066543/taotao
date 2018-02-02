@@ -58,9 +58,20 @@
     
         
     <!-- mapper代理开发包扫描方式 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		Mapper扫描包
+		<property name="basePackage" value="com.taotao.manage.mapper" />
+	</bean> -->
+	<!-- 使用通用mapper -->
+	<bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- Mapper扫描包 -->
 		<property name="basePackage" value="com.taotao.manage.mapper" />
+		<!-- 使用通用mapper,需要修改properties的值 -->
+		<property name="properties">
+			<value>
+				mappers=tk.mybatis.mapper.common.Mapper
+			</value>
+		</property>
 	</bean>
     
 </beans>
