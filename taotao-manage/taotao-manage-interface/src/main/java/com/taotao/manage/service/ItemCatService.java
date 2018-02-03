@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.taotao.manage.pojo.ItemCat;
 
-public interface ItemCatService {
+public interface ItemCatService extends BaseService<ItemCat> {
 	
-	List<ItemCat> queryItemCatListByPage(Integer page, Integer rows);
+	//List<ItemCat> queryItemCatListByPage(Integer page, Integer rows);
 
 }

@@ -12,18 +12,11 @@ import com.taotao.manage.service.ItemCatService;
 
 
 @Service
-public class ItemCatServiceImpl implements ItemCatService {
+public class ItemCatServiceImpl extends BaseServiceImpl<ItemCat> implements ItemCatService {
 	
 	@Autowired
 	private ItemCatMapper itemCatMapper;
 
-	@Override
-	public List<ItemCat> queryItemCatListByPage(Integer page, Integer rows) {
-		//使用分页助手PageHelper设置分页
-		PageHelper.startPage(page, rows);
-		//两种办法都可以.select传一个Null进去代表没有条件
-//		return itemCatMapper.select(null);
-		return itemCatMapper.selectAll();
-	}
+
 
 }

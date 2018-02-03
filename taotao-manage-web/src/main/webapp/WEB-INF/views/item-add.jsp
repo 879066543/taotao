@@ -114,23 +114,30 @@
 	
 	//类目选择初始化
 	function initItemCat(){
+		//使用一个类选择器，获取'商品目录'这个按钮
 		var selectItemCat = $(".selectItemCat");
+		//为这个'商品目录'这个按钮注册点击事件
    		selectItemCat.click(function(){
+   			//这是一个链式写法，用来为easy-ui的窗口中创建一个树，并且打开这个窗口
    			$("<div>").css({padding:"5px"}).html("<ul>")
    			.window({
    				width:'500',
    			    height:"450",
-   			    modal:true,
+   			    modal:true,//是否为模式化窗口
    			    closed:true,
    			    iconCls:'icon-save',
    			    title:'选择类目',
+   			    //onOpen:在打开面板后触发
    			    onOpen : function(){
+   			    	//这里的this就是打开的窗口
    			    	var _win = this;
+   			    	//找到ul标签,并且打开树
    			    	$("ul",_win).tree({
    			    		url:'/rest/item/cat',
    			    		method:'GET',
    			    		animate:true,
    			    		onClick : function(node){
+   			    			//isLeaf:判断节点是否为叶子节点
    			    			if($(this).tree("isLeaf",node.target)){
    			    				// 填写到cid中
    			    				selectItemCat.parent().find("[name=cid]").val(node.id);

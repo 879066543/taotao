@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -37,10 +38,24 @@ public class ItemCatController {
 	public ResponseEntity<List<ItemCat>> queryItemCatListByPage(@PathVariable("page") Integer page,@RequestParam(defaultValue="100")Integer rows) {
 		try {
 			//如果是正确，返回状态码200,ResponseEntity是会将对象转换成JSON格式返回到页面
-			List<ItemCat> list = itemCatService.queryItemCatListByPage(page, rows);
+			//List<ItemCat> list = itemCatService.queryItemCatListByPage(page, rows);
+			List<ItemCat> list = itemCatService.queryListByPage(page, rows);
 			return ResponseEntity.ok(list);
 		} catch (Exception e) {
 			//如果有异常,就返回500
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+		}
+	}
+	
+	//用来展示节点树
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<List<ItemCat>> queryItemCatListByParentId(@RequestParam(value="id",defaultValue="0") Long parent_id){
+		ItemCat itemCat = new ItemCat();
+		itemCat.setParentId(parent_id);
+		try {
+			List<ItemCat> list = itemCatService.queryListByWhere(itemCat);
+			return ResponseEntity.ok(list);
+		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}

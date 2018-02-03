@@ -26,7 +26,20 @@ public class ItemCat extends BasePojo {
     @Column(name = "is_parent")
     private Boolean isParent;
 
-    public Long getId() {
+    //需要提供两个属性用来给easy-ui的tree显示：text(用来展示名称),state(是否展开)
+
+    
+    public String getText() {
+		return this.getName();
+	}
+
+	public String getState() {
+		return this.getIsParent()?"closed":"open";
+	}
+
+	
+	
+	public Long getId() {
         return id;
     }
 
