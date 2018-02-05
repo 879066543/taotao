@@ -1,10 +1,13 @@
 package com.taotao.manage.pojo;
 
+
+
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Table(name = "tb_item")
 public class Item extends BasePojo {
@@ -37,7 +40,20 @@ public class Item extends BasePojo {
     @Column
     private Integer status;
 
-    public Long getId() {
+    @Transient
+    private ItemCat itemCat;
+    
+    
+    
+    public ItemCat getItemCat() {
+		return itemCat;
+	}
+
+	public void setItemCat(ItemCat itemCat) {
+		this.itemCat = itemCat;
+	}
+
+	public Long getId() {
         return id;
     }
 

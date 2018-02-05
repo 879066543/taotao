@@ -77,6 +77,19 @@
 			<artifactId>taotao-manage-pojo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency> -->
+		
+		<!-- 文件上传组件 -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<!-- fastdfs依赖 -->
+		<dependency>
+			<groupId>fastdfs_client</groupId>
+			<artifactId>fastdfs_client</artifactId>
+			<version>1.25</version>
+		</dependency>
+		
 	</dependencies>
 	<!-- 需要启动，去发送请求 -->
 	<build>

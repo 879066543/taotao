@@ -1,6 +1,7 @@
 package com.taotao.manage.service;
 
 
+import com.taotao.common.vo.DataGridResult;
 import com.taotao.manage.pojo.Item;
 
 public interface ItemService extends BaseService<Item> {
@@ -10,6 +11,14 @@ public interface ItemService extends BaseService<Item> {
 
 	//更新
 	void updateItem(Item item, String desc);
+
+	
+	DataGridResult queryItemList(String title, Integer page, Integer rows);
+
+	void reshelf(Long[] ids);
+
+	//下架
+	void instock(Long[] ids);
 	
 
 }

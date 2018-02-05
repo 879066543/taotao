@@ -41,4 +41,15 @@
 		id="itemService" timeout="1000000"/>
 		<dubbo:reference interface="com.taotao.manage.service.ItemDescService"
 		id="itemDescService" timeout="1000000"/>
+
+<!-- 配置文件上传解析器 -->		
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<!-- 文件最大上传大小 -->
+	<property name="maxUploadSize" value="5000000"></property>
+	<!--默认的字符集  -->
+	<property name="defaultEncoding" value="utf-8"></property>
+</bean>
+
+
+
 </beans>

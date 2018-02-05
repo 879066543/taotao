@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 import com.taotao.manage.pojo.ItemCat;
+import com.taotao.manage.pojo.ItemDesc;
 import com.taotao.manage.service.ItemCatService;
 
 @Controller
@@ -59,5 +60,17 @@ public class ItemCatController {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
 		}
 	}
+	
+	@RequestMapping(value="/{ItemCatId}",method=RequestMethod.GET)
+	public ResponseEntity<ItemCat> queryItemDescById(@PathVariable("ItemCatId")Long itemCatId){
+	
+		try {
+			ItemCat itemCat = itemCatService.queryById(itemCatId);
+			return ResponseEntity.ok(itemCat);
+		} catch (Exception e) {
+		}
+		return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+	}
+	
 	
 }

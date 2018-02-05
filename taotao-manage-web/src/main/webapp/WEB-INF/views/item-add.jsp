@@ -156,11 +156,16 @@
 	
 	//图片上传初始化
 	function initPicUpload(){
+		//为图片上传这个a标签注册事件
        	$(".picFileUpload").click(function(){
+       		//获取这个表单
        		var form = $('#itemAddForm');
+       		//使用富文本编辑器进行多图片的上传
        		KindEditor.editor(kingEditorParams).loadPlugin('multiimage',function(){
+       			//
        			var editor = this;
        			editor.plugin.multiImageDialog({
+       				//当点击全部插入的时候触发
 					clickFn : function(urlList) {
 						$(".pics li").remove();
 						var imgArray = [];

@@ -38,6 +38,13 @@ var TT = TAOTAO = {
 		}
 		return "";
 	},
+	//显示类目名称
+	formatItemCat : function(value,row,index){
+		if(value!=null){
+			return value.name;		
+		}
+		return "";
+	},
 	// 格式化价格
 	formatPrice : function(val,row){
 		return (val/100).toFixed(2);
