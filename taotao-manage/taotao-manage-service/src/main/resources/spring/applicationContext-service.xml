@@ -9,27 +9,51 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
         
 	<!-- 配置service扫描 -->
-	<context:component-scan base-package="com.taotao" />
-
-	<!-- 配置dubbo -->
-	<!-- 提供方应用信息，用于计算依赖关系 -->
-	<dubbo:application name="taotao-manage-service" />
+	<!-- <context:component-scan base-package="com.taotao.manage.service.redis" /> -->
+	<!-- 配置jedisPool -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<!-- 使用构造方法 -->
+		<constructor-arg name="host" value="${redis.host}"></constructor-arg>
+		<constructor-arg name="port" value="${redis.port}"></constructor-arg>
+	</bean>
+	<!-- 配置JedisCluster -->
+	<bean id="jedisCluster" class="redis.clients.jedis.JedisCluster">
+		<constructor-arg name="nodes">
+			<set>
+				<!-- 集群节点信息 -->
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node1.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node1.port}"></constructor-arg>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node2.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node2.port}"></constructor-arg>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node3.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node3.port}"></constructor-arg>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node4.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node4.port}"></constructor-arg>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node5.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node5.port}"></constructor-arg>
+				</bean>
+				<bean class="redis.clients.jedis.HostAndPort">
+					<constructor-arg name="host" value="${redis.cluster.node6.host}"></constructor-arg>
+					<constructor-arg name="port" value="${redis.cluster.node6.port}"></constructor-arg>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
 	
-	<!-- 使用multicast广播注册中心暴露服务地址 -->
-	<!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->
-	<!-- 采用直连的方式 -->
-	<!-- <dubbo:registry address="N/A" /> -->
-	<dubbo:registry protocol="zookeeper" address="192.168.12.168:2181" />
-	<!-- 用dubbo协议在20880端口暴露服务；端口号唯一即可 -->
-	<dubbo:protocol name="dubbo" port="20880" />
-
-	<bean id="testServiceImpl" class="com.taotao.manage.service.impl.TestServiceImpl"/>
-	<bean id="itemCatServiceImpl" class="com.taotao.manage.service.impl.ItemCatServiceImpl"/>
-	<bean id="itemServiceImpl" class="com.taotao.manage.service.impl.ItemServiceImpl"/>
-	<bean id="itemDescServiceImpl" class="com.taotao.manage.service.impl.ItemDescServiceImpl"/>
-	<!-- 声明需要暴露的服务接口 -->
-	<dubbo:service interface="com.taotao.manage.service.TestService" ref="testServiceImpl" />
-	<dubbo:service interface="com.taotao.manage.service.ItemCatService" ref="itemCatServiceImpl" />
-	<dubbo:service interface="com.taotao.manage.service.ItemService" ref="itemServiceImpl" />
-	<dubbo:service interface="com.taotao.manage.service.ItemDescService" ref="itemDescServiceImpl" />
+	<!-- 单机版redis -->
+	<!-- <bean id="redisPoolService" class="com.taotao.manage.service.redis.impl.RedisPoolService"></bean> -->
+	
+	<!-- 集群版redis -->
+	<bean id="redisClusterService" class="com.taotao.manage.service.redis.impl.RedisClusterService"></bean>
+	 
+	
 </beans>

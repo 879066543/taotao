@@ -20,13 +20,7 @@
 			<artifactId>taotao-manage-mapper</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-		<!-- taotao-common依赖 -->
- 		<dependency>
-			<groupId>com.taotao</groupId>
-			<artifactId>taotao-common</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-  		
+
   
   
  		<!-- Spring -->
@@ -59,6 +53,14 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 		</dependency>
+		
+		<!-- Redis客户端 -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+		</dependency>
+		
+		
 		<!-- dubbo相关 -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
@@ -82,7 +84,6 @@
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
-
 
 
   </dependencies>

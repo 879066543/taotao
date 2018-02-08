@@ -30,6 +30,7 @@ $(function(){
 	var datagrid = $("#contentList");
 	tree.tree({
 		onClick : function(node){
+			//如果当前点击的节点是叶子节点的话；则重新加载数据表格，并将查询参数categoryId的值修改为当前点击的节点的id
 			if(tree.tree("isLeaf",node.target)){
 				datagrid.datagrid('reload', {
 					categoryId :node.id
